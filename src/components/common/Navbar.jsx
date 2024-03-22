@@ -3,16 +3,13 @@ import "./Navbar.css"
 
 function Navbar() {
   return(
-    <>
-        <div class="sidebar">
-            <a href="#"><i >info</i><span class="icon-text">about</span></a>
-            <a href="#"><i >spa</i><span class="icon-text"></span>services</a>
-            <a href="#"><i >monetization_on</i><span class="icon-text"></span>clients</a>
-            <a href="#"><i >email</i><span class="icon-text"></span>contact</a>
+        <div className="sidebar">
+            <a href="#" className="logo"><i>(NT)</i><span className="icon-text">NOT TWITTER</span></a>
+            <a href="#"><i >(H)</i><span className="icon-text">Home</span></a>
+            <a href="#"><i >(P)</i><span className="icon-text">Profile</span></a>
+            <a href="#"><i >(F)</i><span className="icon-text">Feed</span></a>
+            <a href="#"><i >(T)</i><span className="icon-text">Twitter</span></a>
         </div>
-
-            
-    </>
     
   );
 };
