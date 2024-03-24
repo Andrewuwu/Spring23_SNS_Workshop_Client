@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./MainFeedContainer.css"
-import PostList from "../posts/PostList";
+import PostColumn from "../posts/PostsColumn";
 import SuggestionsColumn from "../suggestions/SuggestionsColumn";
+import {Grid, GridItem} from "@chakra-ui/react";
 
 function MainFeedContainer() {
     const [posts, setPosts] = useState([]);
@@ -26,10 +27,17 @@ function MainFeedContainer() {
 
     return (
         <div className="contentContainer">
-           <PostList></PostList>
-           <SuggestionsColumn></SuggestionsColumn>
+            <Grid templateColumns='repeat(10, 1fr)' gap={5}>
+                <GridItem colStart={1} colEnd={7}>
+                    <PostColumn></PostColumn>
+                </GridItem>
+                <GridItem colStart={7} colEnd={11}>
+                    <PostColumn></PostColumn>
+                </GridItem>
+            </Grid>
         </div>
     );
+    
 }
 
 export default MainFeedContainer;
