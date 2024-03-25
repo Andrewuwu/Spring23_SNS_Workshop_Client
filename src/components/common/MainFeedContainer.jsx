@@ -32,7 +32,7 @@ function MainFeedContainer() {
                     <PostColumn></PostColumn>
                 </GridItem>
                 <GridItem colStart={7} colEnd={11}>
-                    <PostColumn></PostColumn>
+                    <SuggestionsColumn></SuggestionsColumn>
                 </GridItem>
             </Grid>
         </div>
