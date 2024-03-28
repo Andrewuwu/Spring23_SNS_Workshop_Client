@@ -1,6 +1,7 @@
 import React from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
+import { Divider } from '@chakra-ui/react'
 
 // Following vs For You
 
@@ -10,12 +11,10 @@ import PostForm from "./PostForm";
 
 function PostColumn(){
     return(
-        <>
+        <div>
             <PostForm></PostForm>
             <PostList></PostList>
-        </>
-        
-        
+        </div>
     );
 }
 

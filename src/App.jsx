@@ -1,17 +1,21 @@
-import { useState, useEffect } from 'react';
-
-import './App.css';
-import Navbar from './components/common/Navbar';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Navbar from './components/common/NavColumn';
 import MainFeedContainer from './components/common/MainFeedContainer';
 
 
 function App() {
   return (
-    <>
-      <Navbar></Navbar>
-      <MainFeedContainer></MainFeedContainer>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainFeedContainer/>}/>
+        <Route path="/login" element={<div></div>} />
+        <Route path="/profile" element={<div></div>} />
+        <Route path="/contact" element={<div></div>} />
+        <Route path="/otherstuff" element={<div></div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+

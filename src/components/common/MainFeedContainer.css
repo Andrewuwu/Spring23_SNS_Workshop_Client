@@ -1,13 +1,3 @@
 .contentContainer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
-}
-
-.postColumn {
-    flex: 0 0 60%; 
-}
-
-.suggestionsColumn {
-    flex: 0 0 40%; 
+    padding-top: 2rem;
 }

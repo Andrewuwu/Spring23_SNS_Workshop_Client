@@ -19,11 +19,11 @@ function PostList(){
     };
   
     return (
-      <>
+      <div style={{marginTop: "2rem"}}>
         {posts.map((post, index) => (
           <PostCard key={index} post={post}></PostCard>
         ))}
-      </>
+      </div>
     );
 }
 
