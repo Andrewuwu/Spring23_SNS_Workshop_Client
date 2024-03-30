@@ -30,7 +30,6 @@ function PostForm() {
       return;
     }
     console.log('Posting:', content);
-    
     setContent('');
   };
 

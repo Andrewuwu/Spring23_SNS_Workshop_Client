@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import MainFeedContainer from './components/common/MainFeedContainer';
 import Register from './components/login/Register';
+import Login from './components/login/Login';
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainFeedContainer/>}/>
-        <Route path="/login" element={<div>HELLOWORLD</div>} />
+        <Route path="/login" element={<Login></Login>} />
         <Route path="/register" element={<Register/>}/>
         <Route path="/contact" element={<div></div>} />
         <Route path="/otherstuff" element={<div></div>} />

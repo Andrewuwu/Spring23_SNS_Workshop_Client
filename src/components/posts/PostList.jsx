@@ -3,9 +3,12 @@ import PostCard from './PostCard';
 
 function PostList(){
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
       fetchPosts();
+      setUser(JSON.parse(localStorage.getItem("user")));
+      console.log("In postlist", user);
     }, []);
   
     const fetchPosts = async () => {
@@ -18,13 +21,9 @@ function PostList(){
       }
     };
 
-    localStorage.setItem("user", JSON.stringify({username: "bob", password: "password"}));
-    const user = JSON.parse(localStorage.getItem("user"));
-
-  
     return (
       <div style={{marginTop: "2rem"}}>
-        <h1>Welcome {user.username}!</h1>
+        <h1>Welcome {user?.username}</h1>
         {posts.map((post, index) => (
           <div key={index}>
             <PostCard post={post}></PostCard>

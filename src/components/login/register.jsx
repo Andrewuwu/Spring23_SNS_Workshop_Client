@@ -26,7 +26,7 @@ function Register(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username, password: password, profilePicture: "abc.com", followers: [], following: [] })
         };
-        const res = await fetch("http://localhost:5050/users/", requestOptions);
+        const res = await fetch("http://localhost:5050/users/login", requestOptions);
         const user = await res.json();
         console.log("New User", user);
         localStorage.setItem("user", JSON.stringify(user));
