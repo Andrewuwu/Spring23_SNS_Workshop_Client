@@ -17,11 +17,18 @@ function PostList(){
         console.error('Error fetching posts:', error);
       }
     };
+
+    localStorage.setItem("user", JSON.stringify({username: "bob", password: "password"}));
+    const user = JSON.parse(localStorage.getItem("user"));
+
   
     return (
       <div style={{marginTop: "2rem"}}>
+        <h1>Welcome {user.username}!</h1>
         {posts.map((post, index) => (
-          <PostCard key={index} post={post}></PostCard>
+          <div key={index}>
+            <PostCard post={post}></PostCard>
+          </div>
         ))}
       </div>
     );

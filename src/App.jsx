@@ -1,5 +1,4 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Navbar from './components/common/NavColumn';
 import MainFeedContainer from './components/common/MainFeedContainer';
 import Register from './components/login/Register';
 

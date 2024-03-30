@@ -29,10 +29,8 @@ function PostForm() {
       setIsOpen(true);
       return;
     }
-
-    // Perform actions if content is not empty
     console.log('Posting:', content);
-    // Reset the input after posting if needed
+    
     setContent('');
   };
 
