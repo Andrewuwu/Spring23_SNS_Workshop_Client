@@ -4,15 +4,18 @@ import PostColumn from "../posts/PostsColumn";
 import SuggestionsColumn from "../suggestions/SuggestionsColumn";
 import NavColumn from "./NavColumn";
 import {Grid, GridItem} from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function MainFeedContainer() {
     const navigate = useNavigate();
 
-    // TODO ADD USE EFFECT
-    if (!localStorage.getItem("user")){
-        navigate("/register");
-    }
+    useEffect(() => {
+        if (!localStorage.getItem("user")){
+            navigate("/register");
+        }
+    },[]);
+  
 
     return (
         <div className="contentContainer">

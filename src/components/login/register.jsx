@@ -2,7 +2,7 @@ import React from "react";
 import {useState,  useEffect } from "react";
 import {Card, CardHeader, Heading,CardBody, FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, Button} from '@chakra-ui/react';
 import "./login.css";
-import { Route, useNavigate} from "react-router-dom";
+import { Form, Route, useNavigate} from "react-router-dom";
 
 function Register(){
     const [username, setUsername] = useState('');
@@ -56,6 +56,8 @@ function Register(){
                             ) : (
                             <FormErrorMessage>Username is Required.</FormErrorMessage>
                             )}
+                        </FormControl>
+                        <FormControl>
                             <FormLabel>Password</FormLabel>
                             <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                             {!isError ? (
