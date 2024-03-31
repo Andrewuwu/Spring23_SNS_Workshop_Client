@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css"
-import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Button, Flex, HStack,Heading, Text} from "@chakra-ui/react";
+import { useNavigate,  Link} from "react-router-dom";
 
 function Navbar() {
 
@@ -14,12 +14,18 @@ function Navbar() {
 
   return(
         <div className="sidebar">
-            {/* <a href="#" className="logo"><i>(NT)</i><span className="icon-text">NOT TWITTER</span></a>
-            <a href="#"><i >(H)</i><span className="icon-text">Home</span></a>
-            <a href="#"><i >(P)</i><span className="icon-text">Profile</span></a>
-            <a href="#"><i >(F)</i><span className="icon-text">Feed</span></a>
-            <a href="#"><i >(T)</i><span className="icon-text">Twitter</span></a> */}
-            <Button onClick={handleClick}>LOG OUT</Button>
+          <Flex flexDirection="column">
+            <HStack flexDirection="column" spacing='24px' alignItems="start">
+              <div className="nav-link"><Heading><Link to="/">Home</Link></Heading></div>
+              <div className="nav-link"><Text fontSize='3xl'><Link to="/profile">Profile</Link></Text></div>
+              <div className="nav-link"><Text fontSize='3xl'><Link>Explore</Link></Text></div>
+              <div className="nav-link"><Text fontSize='3xl'><Link>Messages</Link></Text></div>
+              <div className="nav-link"><Text fontSize='3xl'><Link>Settings</Link></Text></div>
+              <div className="nav-link-btn"><Text fontSize='3xl'><Button size='lg' variant="link" onClick={handleClick}>Log Out</Button></Text></div>
+            </HStack>
+          </Flex>
+            
+            
         </div>
     
   );

@@ -10,36 +10,39 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogBody,
-  AlertDialogFooter
+  AlertDialogFooter,
+  Heading
 } from '@chakra-ui/react';
 
 function PostForm() {
-  const [content, setContent] = useState('');
+  const [caption, setcaption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef();
 
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
+  const handleCaptionChange = (e) => {
+    setcaption(e.target.value);
   };
 
   const handleSubmit = () => {
-    if (content.trim().length === 0) {
+    if (caption.trim().length === 0) {
       setIsOpen(true);
       return;
     }
-    console.log('Posting:', content);
-    setContent('');
+    console.log('Posting:', caption);
+    const user = localStorage.getItem("user");
+    
+    setcaption('');
   };
 
   return (
     <>
-      <FormControl isRequired isInvalid={isOpen}>
-        <FormLabel>Post Content</FormLabel>
+      <FormControl isInvalid={isOpen}>
+        <FormLabel><Heading>Post caption</Heading></FormLabel>
         <Textarea
-          value={content}
-          onChange={handleContentChange}
+          value={caption}
+          onChange={handleCaptionChange}
           placeholder="Write your post here..."
           size="lg"
         />
@@ -48,6 +51,8 @@ function PostForm() {
       <Button mt="4" colorScheme="blue" onClick={handleSubmit}>
         POST
       </Button>
+
+      
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
