@@ -2,7 +2,34 @@ import React from "react";
 import {Card, CardHeader, CardBody, Image, CardFooter, Flex, Box, Heading, Text, IconButton, Button} from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react"; // Importing Avatar component
 
+function timeSince(timestamp) {
+  const postDate = new Date(timestamp);
+  const currentDate = new Date();
+  const seconds = Math.floor((currentDate - postDate) / 1000);
 
+  let interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return `${interval} years ago`;
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return `${interval} months ago`;
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return `${interval} days ago`;
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return `${interval} hours ago`;
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return `${interval} minutes ago`;
+  }
+  return "Just Now";
+}
 
 function PostCard({ post }) {
   return (
@@ -14,7 +41,7 @@ function PostCard({ post }) {
 
             <Box>
               <Heading size="sm">{post.author.username}</Heading>
-              <Text>Creator, Chakra UI</Text>
+              <Text>{timeSince(post.timestamp)}</Text>
             </Box>
           </Flex>
           <IconButton
