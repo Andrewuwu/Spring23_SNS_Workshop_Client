@@ -8,7 +8,6 @@ function PostList(){
     useEffect(() => {
       fetchPosts();
       setUser(JSON.parse(localStorage.getItem("user")));
-      console.log("In postlist", user);
     }, []);
   
     const fetchPosts = async () => {

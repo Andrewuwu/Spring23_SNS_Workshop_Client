@@ -14,7 +14,7 @@ import {
   Heading
 } from '@chakra-ui/react';
 
-function PostForm() {
+function PostForm({onPostCreated}) {
   const [caption, setcaption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,14 +25,28 @@ function PostForm() {
     setcaption(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (caption.trim().length === 0) {
       setIsOpen(true);
       return;
     }
     console.log('Posting:', caption);
-    const user = localStorage.getItem("user");
-    
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+    const requestOptions = {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        { caption: caption, 
+          img: "https://picsum.photos/200/300", 
+          user: {
+            id: user._id,
+            username: user.username
+           }
+        })
+    }
+    await fetch("http://localhost:5050/posts", requestOptions);
+    onPostCreated();
     setcaption('');
   };
 
