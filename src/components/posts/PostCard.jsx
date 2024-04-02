@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, CardHeader, CardBody, Image, CardFooter, Flex, Box, Heading, Text, IconButton, Button} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react"; // Importing Avatar component
 
 function timeSince(timestamp) {
@@ -39,7 +40,7 @@ function PostCard({ post }) {
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
             <Avatar src={post.image} />
             <Box>
-              <Heading size="sm">{post.author.username}</Heading>
+              <Heading size="md"><Link to={`/profile/${post.author.id}`}>{post.author.username}</Link></Heading>
               <Text>{timeSince(post.timestamp)}</Text>
             </Box>
           </Flex>
