@@ -38,7 +38,6 @@ function PostCard({ post }) {
         <Flex spacing="4">
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
             <Avatar src={post.image} />
-
             <Box>
               <Heading size="sm">{post.author.username}</Heading>
               <Text>{timeSince(post.timestamp)}</Text>

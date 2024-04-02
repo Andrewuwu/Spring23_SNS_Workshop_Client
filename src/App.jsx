@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<MainFeedContainer/>}/>
         <Route path="/login" element={<Login></Login>} />
         <Route path="/register" element={<Register/>}/>
-        <Route path="/profile" element={<ProfilePage></ProfilePage>} />
+        <Route path="/profile/:userId" element={<ProfilePage></ProfilePage>} />
       </Routes>
     </BrowserRouter>
   );

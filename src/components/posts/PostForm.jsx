@@ -14,7 +14,7 @@ import {
   Heading
 } from '@chakra-ui/react';
 
-function PostForm({onPostCreated}) {
+function PostForm({ addPost }) {
   const [caption, setcaption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,8 +45,9 @@ function PostForm({onPostCreated}) {
            }
         })
     }
-    await fetch("http://localhost:5050/posts", requestOptions);
-    onPostCreated();
+    const res = await fetch("http://localhost:5050/posts", requestOptions);
+    const post = await res.json();
+    addPost(post);
     setcaption('');
   };
 

@@ -4,24 +4,29 @@ import PostColumn from "../posts/PostsColumn";
 import SuggestionsColumn from "../suggestions/SuggestionsColumn";
 import NavColumn from "./NavColumn";
 import {Grid, GridItem} from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function MainFeedContainer() {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         if (!localStorage.getItem("user")){
             navigate("/register");
+        } else {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            console.log("This is my userData", userData);
+            setUser(userData);
         }
     },[]);
   
 
     return (
-        <div className="contentContainer">
+        <div className="contentContainer"> WELCOME {user?.username}!
             <Grid templateColumns='repeat(10, 1fr)' gap={5}>
                 <GridItem colStart={2} colEnd={4}>
-                    <NavColumn></NavColumn>
+                    <NavColumn user={user}></NavColumn>
                 </GridItem>
                 <GridItem colStart={4} colEnd={8}>
                     <PostColumn></PostColumn>

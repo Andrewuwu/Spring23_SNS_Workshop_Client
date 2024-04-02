@@ -1,26 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
-import { Divider } from '@chakra-ui/react'
-import { useState } from "react";
-
-// Following vs For You
-
-// Create your own post area
-
-// Posts List, Infinite scrolling?
 
 function PostColumn(){
-    const [postsUpdate, setPostsUpdate] = useState(false);
+    const [posts, setPosts] = useState([]);
 
-    const handlePostCreated = () => {
-        setPostsUpdate(!postsUpdate);
-    }
+    const fetchPosts = async () => {
+        try {
+          const response = await fetch('http://localhost:5050/posts');
+          const data = await response.json();
+          setPosts(data);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, [])
+
+    const addPost = (newPost) => {
+        setPosts([newPost, ...posts]);
+    };
 
     return(
         <div>
-            <PostForm onPostCreated={handlePostCreated}></PostForm>
-            <PostList key={postsUpdate ? 'updated' : 'initial'}></PostList>
+            <PostForm addPost={addPost}></PostForm>
+            <PostList posts={posts}></PostList>
         </div>
     );
 }

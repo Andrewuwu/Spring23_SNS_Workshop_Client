@@ -3,8 +3,7 @@ import "./Navbar.css"
 import { Button, Flex, HStack,Heading, Text} from "@chakra-ui/react";
 import { useNavigate,  Link} from "react-router-dom";
 
-function Navbar() {
-
+function NavColumn({user}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -17,7 +16,7 @@ function Navbar() {
           <Flex flexDirection="column">
             <HStack flexDirection="column" spacing='24px' alignItems="start">
               <div className="nav-link"><Heading><Link to="/">Home</Link></Heading></div>
-              <div className="nav-link"><Text fontSize='3xl'><Link to="/profile">Profile</Link></Text></div>
+              <div className="nav-link"><Text fontSize='3xl'><Link to={`/profile/${user?._id}`}>Profile</Link></Text></div>
               <div className="nav-link"><Text fontSize='3xl'><Link>Explore</Link></Text></div>
               <div className="nav-link"><Text fontSize='3xl'><Link>Messages</Link></Text></div>
               <div className="nav-link"><Text fontSize='3xl'><Link>Settings</Link></Text></div>
@@ -31,4 +30,4 @@ function Navbar() {
   );
 };
 
-export default Navbar;
+export default NavColumn;
