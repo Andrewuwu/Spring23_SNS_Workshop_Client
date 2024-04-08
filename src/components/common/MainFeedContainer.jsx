@@ -16,7 +16,6 @@ function MainFeedContainer() {
             navigate("/register");
         } else {
             const userData = JSON.parse(localStorage.getItem('user'));
-            console.log("This is my userData", userData);
             setUser(userData);
         }
     },[]);

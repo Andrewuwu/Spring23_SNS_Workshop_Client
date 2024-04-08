@@ -32,9 +32,7 @@ function PostForm({ addPost }) {
       setIsOpen(true);
       return;
     }
-    console.log('Posting:', caption);
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
     const requestOptions = {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },

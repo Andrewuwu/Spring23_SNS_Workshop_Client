@@ -24,7 +24,6 @@ function Register() {
             setErrorMessage(errorMessage.message);
         } else {
             const user = await res.json();
-            console.log("New User", user);
             localStorage.setItem("user", JSON.stringify(user));
             setUsername("");
             setPassword("");

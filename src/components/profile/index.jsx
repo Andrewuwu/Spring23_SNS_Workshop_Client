@@ -20,7 +20,6 @@ function ProfilePage() {
                 console.error('Error fetching user:', error);
             }
         };
-        console.log("This is userId", userId);
         setCurrUser(JSON.parse(localStorage.getItem('user')));
         fetchUser();
     }, [userId]);

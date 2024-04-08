@@ -9,6 +9,10 @@ function ProfileCard({ user_id, initCurrUser }) {
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [isFollowing, setIsFollowing] = useState(false);
 
+    const deletePost = (postId) => {
+        setPosts(posts.filter((post) => post._id !== postId));
+    }
+
     useEffect(() => {
         const fetchUsersAndPosts = async () => {
             try {
@@ -120,7 +124,7 @@ function ProfileCard({ user_id, initCurrUser }) {
                 </CardBody>
             </Card>
             <div className="scrollable-column">
-                <PostList posts={posts}></PostList>
+                <PostList posts={posts} onDelete={deletePost}></PostList>
             </div>
         </div>
     );

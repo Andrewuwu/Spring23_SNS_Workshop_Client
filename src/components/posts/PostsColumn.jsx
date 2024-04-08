@@ -6,19 +6,19 @@ import "./PostsColumn.css";
 function PostColumn(){
     const [posts, setPosts] = useState([]);
 
-    // const fetchPosts = async () => {
-    //     try {
-    //       const response = await fetch('http://localhost:5050/posts');
-    //       const data = await response.json();
-    //       setPosts(data);
-    //     } catch (error) {
-    //       console.error('Error fetching posts:', error);
-    //     }
-    // };
+    const fetchPosts = async () => {
+        try {
+          const response = await fetch('http://localhost:5050/posts');
+          const data = await response.json();
+          setPosts(data);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }
+    };
 
-    // useEffect(() => {
-    //     fetchPosts();
-    // }, [])
+    useEffect(() => {
+        fetchPosts();
+    }, [])
 
     const addPost = (newPost) => {
         setPosts([newPost, ...posts]);
