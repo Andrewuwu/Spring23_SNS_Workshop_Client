@@ -1,7 +1,8 @@
 import React from "react";
 import {Card, CardHeader, CardBody, Image, CardFooter, Flex, Box, Heading, Text, IconButton, Button, Center} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { Avatar } from "@chakra-ui/react"; // Importing Avatar component
+import { Avatar } from "@chakra-ui/react"; 
+import { DeleteIcon } from "@chakra-ui/icons";
 
 function timeSince(timestamp) {
   const postDate = new Date(timestamp);
@@ -32,7 +33,26 @@ function timeSince(timestamp) {
   return "Just Now";
 }
 
-function PostCard({ post }) {
+
+function PostCard({ post, onDelete }) {
+  const currUser = JSON.parse(localStorage.getItem("user"));
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:5050/posts/${post._id}`, {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        onDelete(post._id);
+      } else {
+        console.error('Failed to delete post:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
+
   return (
     <Card variant="outline">
       <CardHeader>
@@ -44,11 +64,15 @@ function PostCard({ post }) {
               <Text>{timeSince(post.timestamp)}</Text>
             </Box>
           </Flex>
-          <IconButton
-            variant="ghost"
-            colorScheme="gray"
-            aria-label="See menu"
-          />
+          {currUser?._id === post.author.id && (
+            <IconButton
+              variant="ghost"
+              colorScheme="red"
+              aria-label="Delete post"
+              icon={<DeleteIcon />}
+              onClick={handleDelete}
+            />
+          )}
         </Flex>
       </CardHeader>
       <CardBody>

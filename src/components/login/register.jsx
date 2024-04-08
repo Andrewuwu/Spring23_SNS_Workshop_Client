@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Card, CardHeader, Heading, CardBody, FormControl, FormLabel, Input, FormHelperText, Text, Button } from '@chakra-ui/react';
+import { Card, CardHeader, CardFooter, Heading, CardBody, FormControl, FormLabel, Input, FormHelperText, Text, Button } from '@chakra-ui/react';
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -71,6 +72,9 @@ function Register() {
                         </Button>
                     </form>
                 </CardBody>
+                <CardFooter>
+                    <Link to="/login">Already Have An Account?</Link>
+                </CardFooter>
             </Card>
         </div>
     );

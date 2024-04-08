@@ -3,6 +3,7 @@ import {useState} from "react";
 import {FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, Button, Heading} from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 
 function Login(){
@@ -71,6 +72,9 @@ function Login(){
                     Login
                 </Button>
             </form>
+
+            <Link to="/register">Don't have an account?</Link>
+
         </div>
     );
 }
