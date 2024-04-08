@@ -32,7 +32,7 @@ function ProfilePage() {
                     <NavColumn user={currUser}></NavColumn>
                 </GridItem>
                 <GridItem colStart={4} colEnd={10}>
-                    <ProfileCard user={user} currUser={currUser}></ProfileCard>
+                    <ProfileCard user_id={userId} initCurrUser={currUser}></ProfileCard>
                 </GridItem>
             </Grid>
         </div>

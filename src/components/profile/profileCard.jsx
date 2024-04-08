@@ -2,34 +2,44 @@ import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, Image, Avatar, Heading, Flex, Box, Button, Spacer} from "@chakra-ui/react";
 import PostList from "../posts/PostList";
 
-function ProfileCard({ user, currUser }) {
+function ProfileCard({ user_id, initCurrUser }) {
+    const [user, setUser] = useState(null);
+    const [currUser, setCurrUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [isFollowing, setIsFollowing] = useState(false);
 
-    const checkRelationship = () => {
-        if (currUser && user) {
-            setIsCurrentUser(currUser._id === user._id);
-            setIsFollowing(currUser.following.includes(user._id));
-        }
-    };
-
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchUsersAndPosts = async () => {
             try {
-                if (user) { 
-                    const response = await fetch(`http://localhost:5050/posts/byuser/${user._id}`);
-                    const data = await response.json();
-                    setPosts(data);
+                if (initCurrUser && user_id){
+                    const currentUserResponse = await fetch(`http://localhost:5050/users/${initCurrUser._id}`);
+                    const currentUserData = await currentUserResponse.json();
+                    setCurrUser(currentUserData);
+        
+                    // Fetch the user whose profile is being displayed
+                    const userResponse = await fetch(`http://localhost:5050/users/${user_id}`);
+                    const userData = await userResponse.json();
+                    setUser(userData);
+        
+                    // Check relationship between users
+                    if (currentUserData && userData) {
+                        setIsCurrentUser(currentUserData._id === userData._id);
+                        setIsFollowing(currentUserData.following.includes(userData._id));
+                    }
+        
+                    // Fetch posts of the displayed user
+                    const postsResponse = await fetch(`http://localhost:5050/posts/byuser/${userData._id}`);
+                    const postsData = await postsResponse.json();
+                    setPosts(postsData);
                 }
             } catch (error) {
-                console.error('Error fetching posts:', error);
+                console.error('Error fetching data:', error);
             }
         };
-        checkRelationship();
-        fetchPosts();
-        
-    }, [user, currUser]);
+        fetchUsersAndPosts();
+    }, [initCurrUser, user_id]);
+    
 
     const handleFollow = async () => {
         try {
@@ -45,6 +55,9 @@ function ProfileCard({ user, currUser }) {
             });
             if (response.ok) {
                 setIsFollowing(true);
+                const users = await response.json();
+                setCurrUser(users.follower);
+                setUser(users.followed);
             }
         } catch (error) {
             console.error("Error following user:", error);
@@ -65,6 +78,9 @@ function ProfileCard({ user, currUser }) {
             });
             if (response.ok) {
                 setIsFollowing(false);
+                const users = await response.json();
+                setCurrUser(users.unfollower);
+                setUser(users.unfollowed);
             }
         } catch (error) {
             console.error("Error unfollowing user:", error);
