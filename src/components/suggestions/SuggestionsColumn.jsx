@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBar from "./SearchBar";
 import SuggestionsList from "./SuggestionsList";
 
 // Search Bar
@@ -9,10 +8,7 @@ import SuggestionsList from "./SuggestionsList";
 
 function SuggestionsColumn(){
     return (
-        <>
-            <SearchBar></SearchBar>
-            <SuggestionsList></SuggestionsList>
-        </>
+        <SuggestionsList></SuggestionsList>
     );
 }
 

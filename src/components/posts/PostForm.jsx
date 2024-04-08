@@ -11,7 +11,9 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
-  Heading
+  Heading,
+  Card,
+  CardBody,
 } from '@chakra-ui/react';
 
 function PostForm({ addPost }) {
@@ -52,7 +54,8 @@ function PostForm({ addPost }) {
   };
 
   return (
-    <>
+    <Card>
+      <CardBody>  
       <FormControl isInvalid={isOpen}>
         <FormLabel><Heading>Post caption</Heading></FormLabel>
         <Textarea
@@ -66,8 +69,6 @@ function PostForm({ addPost }) {
       <Button mt="4" colorScheme="blue" onClick={handleSubmit}>
         POST
       </Button>
-
-      
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -88,7 +89,9 @@ function PostForm({ addPost }) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+      </CardBody>
+
+    </Card>
   );
 }
 

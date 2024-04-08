@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
+import "./PostsColumn.css";
+import { Heading, Divider} from "@chakra-ui/react";
 
 function PostColumn(){
     const [posts, setPosts] = useState([]);
@@ -26,7 +28,9 @@ function PostColumn(){
     return(
         <div>
             <PostForm addPost={addPost}></PostForm>
-            <PostList posts={posts}></PostList>
+            <div className="scrollable-column">
+                <PostList posts={posts}></PostList>
+            </div>
         </div>
     );
 }

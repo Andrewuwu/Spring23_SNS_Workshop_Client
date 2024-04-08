@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardHeader, CardBody, Image, CardFooter, Flex, Box, Heading, Text, IconButton, Button} from "@chakra-ui/react";
+import {Card, CardHeader, CardBody, Image, CardFooter, Flex, Box, Heading, Text, IconButton, Button, Center} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react"; // Importing Avatar component
 
@@ -34,7 +34,7 @@ function timeSince(timestamp) {
 
 function PostCard({ post }) {
   return (
-    <Card>
+    <Card variant="outline">
       <CardHeader>
         <Flex spacing="4">
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
@@ -56,12 +56,15 @@ function PostCard({ post }) {
           --- {post.caption} ---
         </Text>
       </CardBody>
+      <Center>
       <Image
-        objectFit="cover"
-        src={post.image}
-        alt="Chakra UI"
-      />
-
+          objectFit="cover"
+          src={post.image}
+          boxSize='md'
+          fallbackSrc='https://picsum.photos/200/300'
+          borderRadius='md'
+        />
+      </Center>
       <CardFooter
         justify="space-between"
         flexWrap="wrap"
@@ -73,9 +76,6 @@ function PostCard({ post }) {
       >
         <Button flex="1" variant="ghost">
           Like
-        </Button>
-        <Button flex="1" variant="ghost">
-          Comment
         </Button>
         <Button flex="1" variant="ghost">
           Share

@@ -3,7 +3,7 @@ import "./MainFeedContainer.css"
 import PostColumn from "../posts/PostsColumn";
 import SuggestionsColumn from "../suggestions/SuggestionsColumn";
 import NavColumn from "./NavColumn";
-import {Grid, GridItem} from "@chakra-ui/react";
+import {Grid, GridItem, Divider} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ function MainFeedContainer() {
   
 
     return (
-        <div className="contentContainer"> WELCOME {user?.username}!
+        <div className="contentContainer">
             <Grid templateColumns='repeat(10, 1fr)' gap={5}>
                 <GridItem colStart={2} colEnd={4}>
                     <NavColumn user={user}></NavColumn>
@@ -31,7 +31,7 @@ function MainFeedContainer() {
                 <GridItem colStart={4} colEnd={8}>
                     <PostColumn></PostColumn>
                 </GridItem>
-                <GridItem colStart={8} colEnd={11}>
+                <GridItem colStart={8} colEnd={10}>
                     <SuggestionsColumn></SuggestionsColumn>
                 </GridItem>
             </Grid>
