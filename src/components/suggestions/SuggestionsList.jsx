@@ -40,7 +40,7 @@ function SuggestionsList() {
                                 <Link className="user-link" to={`/profile/${user._id}`}>{user.username.length > 12 ? user.username.slice(0, 12) + '...' : user.username}</Link>
                             </Box>
                             <Spacer/>
-                            <Button>Follow</Button>
+                            <Button size="sm">Follow</Button>
                         </Flex>
                     ))}
                 </VStack>

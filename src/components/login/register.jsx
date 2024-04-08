@@ -1,22 +1,13 @@
-import React from "react";
-import {useState,  useEffect } from "react";
-import {Card, CardHeader, Heading,CardBody, FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, Button} from '@chakra-ui/react';
+import React, { useState } from "react";
+import { Card, CardHeader, Heading, CardBody, FormControl, FormLabel, Input, FormHelperText, Text, Button } from '@chakra-ui/react';
 import "./login.css";
-import { Form, Route, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Register(){
+function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (localStorage.getItem("user")){
-            navigate("/");
-        }
-    }, [])
-    
-    
-    const isError = username === '';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,16 +18,20 @@ function Register(){
             body: JSON.stringify({ username: username, password: password, profilePicture: "abc.com", followers: [], following: [] })
         };
         const res = await fetch("http://localhost:5050/users/", requestOptions);
-        const user = await res.json();
-        console.log("New User", user);
-        localStorage.setItem("user", JSON.stringify(user));
-
-        setUsername("");
-        setPassword("");
-        navigate("/")
+        if (!res.ok) {
+            const errorMessage = await res.json();
+            setErrorMessage(errorMessage.message);
+        } else {
+            const user = await res.json();
+            console.log("New User", user);
+            localStorage.setItem("user", JSON.stringify(user));
+            setUsername("");
+            setPassword("");
+            navigate("/")
+        }
     }
 
-    return(
+    return (
         <div className="center">
             <Card>
                 <CardHeader>
@@ -46,26 +41,25 @@ function Register(){
                 </CardHeader>
                 <CardBody>
                     <form onSubmit={handleSubmit}>
-                        <FormControl isInvalid={isError}>
+                        <FormControl>
                             <FormLabel>Username</FormLabel>
                             <Input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
-                            {!isError ? (
-                            <FormHelperText>
-                                Enter your username
-                            </FormHelperText>
-                            ) : (
-                            <FormErrorMessage>Username is Required.</FormErrorMessage>
+                            {errorMessage && (
+                                <Text color="red">{errorMessage}</Text>
+                            )}
+                            {!errorMessage && (
+                                <FormHelperText>
+                                    Enter your username
+                                </FormHelperText>
                             )}
                         </FormControl>
                         <FormControl>
                             <FormLabel>Password</FormLabel>
                             <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                            {!isError ? (
-                            <FormHelperText>
-                                Enter Your Password
-                            </FormHelperText>
-                            ) : (
-                            <FormErrorMessage>Password is Required</FormErrorMessage>
+                            {!errorMessage && (
+                                <FormHelperText>
+                                    Enter Your Password
+                                </FormHelperText>
                             )}
                         </FormControl>
                         <Button

@@ -8,7 +8,10 @@ import SuggestionsList from "./SuggestionsList";
 
 function SuggestionsColumn(){
     return (
-        <SuggestionsList></SuggestionsList>
+        <div>
+            <SuggestionsList></SuggestionsList>
+        </div>
+       
     );
 }
 
